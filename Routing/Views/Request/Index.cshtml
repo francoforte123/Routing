@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Routing.Models.Request>
+
+@{
+    ViewData["Title"] = "Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>This is one page inherent a of request</h1>
+
+<p>
+    <a asp-action="Create">Create new</a>
+</p>
+
+<hr />
+<table>
+    <tr>
+        <th class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Id)
+        </th>
+        <th class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Author)
+        </th>
+        <th class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Title)
+        </th>
+        <th class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Description)
+        </th>
+    </tr>
+
+
+
+
+    @foreach (var modelItem in Model)
+    {
+        <tr>
+            <td class="col-sm-2">
+                @Html.DisplayFor(item=>modelItem.Id)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(item=>modelItem.Author)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(item=>modelItem.Title)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(item=>modelItem.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id = modelItem.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = modelItem.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = modelItem.Id })
+            </td>
+        </tr>
+
+    }
+</table>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
